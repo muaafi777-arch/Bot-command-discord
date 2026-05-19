@@ -11,8 +11,6 @@
 
 </div>
 
----
-
 Bot Discord yang dibuat dengan **Node.js** dan **discord.js** untuk memberikan berbagai fitur utility dan entertainment di server Anda. Project ini berfokus pada code quality, error handling, dan ease of use.
 
 ---
