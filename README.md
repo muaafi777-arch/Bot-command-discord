@@ -1,231 +1,186 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge&logo=node.js" alt="Node.js">
-  <img src="https://img.shields.io/badge/discord.js-v14-blue?style=for-the-badge&logo=discord" alt="discord.js">
-  <img src="https://img.shields.io/badge/License-ISC-yellow?style=for-the-badge" alt="License">
 
-  # 🤖 Zyubot
+# 🤖 Zyubot
 
-  #### A Powerful Discord Bot with Utility & Entertainment Features
+### A Powerful Discord Bot with Utility & Entertainment Features
 
-  [Features](#-features) • [Quick Start](#-quick-start) • [Commands](#-command-list) • [Documentation](#-development)
+[![Node.js](https://img.shields.io/badge/Node.js-v18+-green?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![discord.js](https://img.shields.io/badge/discord.js-v14-blue?style=for-the-badge&logo=discord)](https://discord.js.org/)
+[![License](https://img.shields.io/badge/License-ISC-yellow?style=for-the-badge)](LICENSE)
+
+[🚀 Quick Start](#-quick-start) • [📖 Commands](#-commands) • [🔧 Config](#-configuration) • [🤝 Contributing](#-contributing)
 
 </div>
 
 ---
 
-Bot Discord yang dibuat dengan **Node.js** dan **discord.js** untuk memberikan berbagai fitur utility dan entertainment di server Anda. Project ini berfokus pada code quality, error handling, dan ease of use.
+## 📌 About
+
+Zyubot adalah **Discord Bot modern** yang dibuat dengan **Node.js** dan **discord.js**. Bot ini dirancang dengan fokus pada:
+
+- 🏗️ **Clean Code** - Mudah dipahami dan di-maintain
+- ⚡ **Performance** - Lightweight dan cepat
+- 🔒 **Security** - Environment variables untuk sensistive data  
+- 📚 **Documentation** - Lengkap dan mudah diikuti
 
 ---
 
-## 📋 Table of Contents
+## ✨ Features
 
-- [Features](#-features)
-- [Quick Start](#-quick-start)
-- [Configuration](#-configuration)
-- [Commands](#-command-list)
-- [Project Structure](#-project-structure)
-- [Creating Commands](#-creating-new-commands)
-- [Troubleshooting](#-troubleshooting)
-- [Development](#-development)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Resources](#-useful-resources)
-
----
-
-## ⭐ Features
-
-<table>
-  <tr>
-    <td width="50%">
-      <h3>⚡ Performance</h3>
-      <ul>
-        <li>Lightweight & Fast</li>
-        <li>Automatic Command Loading</li>
-        <li>Efficient Error Handling</li>
-        <li>Environment Configuration</li>
-      </ul>
-    </td>
-    <td width="50%">
-      <h3>🎯 Functionality</h3>
-      <ul>
-        <li>Calculator (4 operations)</li>
-        <li>User Profile Info</li>
-        <li>Server Information</li>
-        <li>Bot Status & Ping</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
-**Advanced Features:**
-- ✅ Dynamic command loading dari folder `/commands`
-- ✅ Comprehensive error handling & logging
-- ✅ Beautiful embed responses
-- ✅ User-friendly help system
-- ✅ Timezone support (Asia/Jakarta)
+| Feature | Description |
+|---------|-------------|
+| ⚡ Lightweight | Fast command execution |
+| 🔄 Auto Load | Commands auto-load dari folder |
+| 🛡️ Error Handling | Comprehensive error catching |
+| 🎨 Rich Embeds | Beautiful formatted responses |
+| 🔐 Secure Config | Environment variables support |
+| 🌏 Timezone Support | Built-in Asia/Jakarta timezone |
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- **Node.js** v16.0.0 or higher ([Download](https://nodejs.org/))
-- **npm** (bundled with Node.js)
-- Discord Bot Token ([Create here](https://discord.com/developers/applications))
-- A Discord Server (for testing)
 
-### Installation Steps
+- **Node.js** v16+ ([Download](https://nodejs.org/))
+- **npm** (included with Node.js)
+- **Discord Bot Token** ([Create di sini](https://discord.com/developers/applications))
+
+### Installation
 
 ```bash
-# 1. Clone the repository
+# 1. Clone repository
 git clone https://github.com/muaafi777-arch/Bot-command-discord.git
 cd Bot-command-discord
 
 # 2. Install dependencies
 npm install
 
-# 3. Configure environment variables
+# 3. Setup environment
 cp .env.example .env
-# Edit .env with your bot token and prefix
+# Edit .env dengan bot token Anda
 
-# 4. Start the bot
+# 4. Run bot
 node main.js
 ```
 
-**Expected Output:**
-```
-Bot Zyubot sudah aktif
-```
+✅ Sukses jika muncul: `Bot Zyubot sudah aktif`
 
 ---
 
-## 📝 Configuration
+## ⚙️ Configuration
 
-### `.env` File Setup
-
-Create a `.env` file in the root directory:
+### Environment Variables (.env)
 
 ```env
-# Discord Bot Token (Required)
+# Discord Bot Token
 TOKEN_DC=YOUR_BOT_TOKEN_HERE
 
-# Command Prefix (Default: .)
+# Command Prefix
 PREFIX=.
 ```
 
-> ⚠️ **Security Note:** Never commit `.env` to version control. It's already in `.gitignore`
-
-### Changing Command Prefix
-
-Update the `PREFIX` value in `.env`:
+### Custom Prefix
 
 ```env
-PREFIX=!          # Use !command
-PREFIX=-          # Use -command  
-PREFIX=>>         # Use >>command
-PREFIX=bot        # Use botcommand
+PREFIX=!       # Gunakan !command
+PREFIX=-       # Gunakan -command  
+PREFIX=>>      # Gunakan >>command
 ```
+
+> ⚠️ **Security:** File `.env` tidak boleh di-commit (sudah di `.gitignore`)
 
 ---
 
-## 🎮 Command List
+## 🎮 Commands
 
 ### System Commands
 
-| Command | Description | Usage | Example |
-|---------|-------------|-------|---------|
-| `.help` | Display all available commands | `.help` | - |
-| `.info` | Show bot information | `.info` | - |
-| `.ping` | Check bot latency | `.ping` | - |
-| `.waktu` | Get current time (Asia/Jakarta) | `.waktu` | - |
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.ping` | Check bot latency | `.ping` |
+| `.help` | Show all commands | `.help` |
+| `.info` | Bot information | `.info` |
+| `.waktu` | Current time (Jakarta) | `.waktu` |
 
 ### Utility Commands
 
-| Command | Description | Usage | Example |
-|---------|-------------|-------|---------|
-| `.userinfo` | Display user profile information | `.userinfo [mention]` | `.userinfo` or `.userinfo @User` |
-| `.hitung` | Calculator with 4 operations | `.hitung <op> <num1> <num2>` | `.hitung tambah 10 5` |
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.userinfo` | User profile info | `.userinfo [@User]` |
+| `.hitung` | Calculator (4 ops) | `.hitung <op> <num1> <num2>` |
 
 ---
 
-### Detailed Command Guide
+### Command Usage
 
-#### 🧮 `.hitung` Command
-Perform mathematical operations on two numbers.
+#### 🧮 .hitung - Calculator
+
+Operasi mathematika dengan 2 angka.
 
 **Available Operations:**
-- `tambah` - Addition: `a + b`
-- `kurang` - Subtraction: `a - b`
-- `kali` - Multiplication: `a × b`
-- `bagi` - Division: `a ÷ b`
+- `tambah` - Addition (+)
+- `kurang` - Subtraction (-)
+- `kali` - Multiplication (×)
+- `bagi` - Division (÷)
 
 **Examples:**
 ```
-.hitung tambah 10 5      ➜ Result: 10 + 5 = 15
-.hitung kurang 20 8      ➜ Result: 20 - 8 = 12
-.hitung kali 7 6         ➜ Result: 7 × 6 = 42
-.hitung bagi 100 4       ➜ Result: 100 ÷ 4 = 25
+.hitung tambah 10 5      → 15
+.hitung kurang 20 8      → 12
+.hitung kali 7 6         → 42
+.hitung bagi 100 4       → 25
 ```
 
-#### 👤 `.userinfo` Command
-Display detailed user/member profile information.
+#### 👤 .userinfo - User Profile
 
-**Features:**
-- User tag & ID
-- Account creation date
+Tampilkan informasi detail user/member dengan embed yang cantik.
+
+**Shows:**
+- Username & Tag
+- User ID
+- Account created date
 - Server join date
-- Custom avatar display
+- User avatar
 
 **Examples:**
 ```
-.userinfo              ➜ Show your profile
-.userinfo @Username   ➜ Show another user's profile
+.userinfo              → Your profile
+.userinfo @Username   → Other user's profile
 ```
 
 ---
 
-## � Project Structure
+## 📁 Project Structure
 
 ```
 Bot-command-discord/
-├── 📄 main.js                    # Application entry point
-├── 📄 package.json               # Dependencies & project metadata
-├── 📄 .env                       # Configuration (SENSITIVE - Do not commit)
-├── 📄 .env.example               # Example .env template
-├── 📄 .gitignore                 # Git ignore rules
-├── 📄 eslint.config.mjs          # ESLint configuration
-├── 📄 README.md                  # This file
-└── 📁 commands/
-    ├── sistem.js                 # System commands (ping, help, info, waktu)
-    ├── perhitungan.js            # Calculator command (.hitung)
-    └── memberData.js             # User info command (.userinfo)
+├── main.js              ← Bot entry point
+├── package.json         ← Dependencies
+├── .env                 ← Config (DO NOT COMMIT)
+├── .env.example         ← Config template
+├── .gitignore           ← Git rules
+├── README.md            ← Documentation
+└── commands/
+    ├── sistem.js        ← System commands
+    ├── perhitungan.js   ← Calculator (.hitung)
+    └── memberData.js    ← User info (.userinfo)
 ```
-
-### Directory Breakdown
-
-| File/Folder | Purpose |
-|------------|---------|
-| `main.js` | Bot initialization and message event handler |
-| `commands/` | Dynamic command modules |
-| `.env` | Bot token & configuration (Not tracked by Git) |
-| `package.json` | Project dependencies and scripts |
-| `.gitignore` | Git exclusion rules |
 
 ---
 
 ## ➕ Creating New Commands
 
-Commands are automatically loaded from the `commands/` directory. No need to edit `main.js`!
+Commands auto-load dari folder `commands/`. No need to edit `main.js`!
 
 ### Command Template
 
 ```javascript
 module.exports = [
     {
-        name: 'commandname',         // Command name (lowercase)
-        description: 'Command description',
-        execute(message, args) {     // Executed when command is used
+        name: 'commandname',         // lowercase
+        description: 'Command desc',
+        execute(message, args) {
             // Your code here
             message.reply('Hello!');
         }
@@ -233,7 +188,7 @@ module.exports = [
 ];
 ```
 
-### Example: Dice Roller Command
+### Example: Dice Roller
 
 **File:** `commands/game.js`
 
@@ -241,7 +196,7 @@ module.exports = [
 module.exports = [
     {
         name: 'dadu',
-        description: 'Roll a dice (1-6)',
+        description: 'Roll dice (1-6)',
         execute(message) {
             const result = Math.floor(Math.random() * 6) + 1;
             message.reply(`🎲 Dice: **${result}**`);
@@ -250,123 +205,66 @@ module.exports = [
 ];
 ```
 
-**Usage:**
-```
-.dadu
-```
-
-### Function Parameters
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `message` | Object | Discord message object |
-| `args` | Array | Command arguments (split by space) |
-
-**Example with arguments:**
-```javascript
-execute(message, args) {
-    if (args.length === 0) {
-        return message.reply('Please provide arguments');
-    }
-    const firstName = args[0];
-    message.reply(`Hello, ${firstName}!`);
-}
-```
+**Usage:** `.dadu`
 
 ---
 
 ## 🐛 Troubleshooting
 
-### Bot is Offline / Not Responding
+### Bot Offline / Not Responding
 
-**Symptoms:** Bot offline in Discord, no commands work
+**Check:**
+- [ ] Bot token di `.env` correct
+- [ ] Internet connection OK
+- [ ] Token valid di Discord Developer Portal
+- [ ] Restart bot: `Ctrl+C` → `node main.js`
 
-**Solutions:**
-- [ ] Verify bot token in `.env` is correct
-- [ ] Check internet connection
-- [ ] Verify token in [Discord Developer Portal](https://discord.com/developers/applications)
-- [ ] Restart bot: Press `Ctrl+C` then `node main.js`
+### Command Not Working
 
-```bash
-# Check if bot starts successfully
-node main.js
-# Expected: "Bot Zyubot sudah aktif"
+**Check:**
+- [ ] Command name lowercase (`.userinfo` not `.userInfo`)
+- [ ] Restart bot after adding command
+- [ ] Check console for errors
+- [ ] Bot has message permissions
+
+### Module Error
+
 ```
-
-### Command Not Working / Not Found
-
-**Symptoms:** Command is typed but bot doesn't respond
-
-**Solutions:**
-- [ ] Ensure command name is **lowercase** (`.userinfo` not `.userInfo`)
-- [ ] Restart bot after adding new commands
-- [ ] Check console for error messages
-- [ ] Verify bot has message permissions in the channel
-
-```bash
-# Verify commands are loaded
-# Check console output when bot starts
+Error: Cannot find module 'discord.js'
 ```
-
-### Module Not Found Error
-
-**Error:** `Error: Cannot find module 'discord.js'`
 
 **Solution:**
 ```bash
 npm install
 ```
 
-### Discord Developer Portal Setup
+### Setup Discord Developer Portal
 
-**Ensure these steps are completed:**
-
-1. Create application at https://discord.com/developers/applications
-2. Copy the **Token** into `.env` as `TOKEN_DC`
-3. Enable required intents:
-   - [ ] Guilds
-   - [ ] Guild Members
-   - [ ] Guild Messages
-   - [ ] Message Content
-4. Set permissions in OAuth2 → URL Generator:
-   - [ ] Send Messages
-   - [ ] Read Messages/View Channels
-   - [ ] Read Message History
-
-### Git/GitHub Issues
-
-**Error:** `fatal: not a git repository`
-
-**Solution:**
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git remote add origin https://github.com/muaafi777-arch/Bot-command-discord.git
-git branch -M main
-git push -u origin main
-```
+1. Go to https://discord.com/developers/applications
+2. Create or select application
+3. Copy **Token** → paste to `.env` as `TOKEN_DC`
+4. Enable Required Intents:
+   - Guilds
+   - Guild Members
+   - Guild Messages
+   - Message Content
+5. Set OAuth2 Permissions:
+   - Send Messages
+   - Read Messages/View Channels
+   - Read Message History
 
 ---
 
-## � Development
+## 💻 Development
 
-### Setup Development Environment
-
-Install nodemon for automatic reload on file changes:
+### Auto-reload with Nodemon
 
 ```bash
 npm install -D nodemon
-```
-
-Run with auto-reload:
-```bash
 nodemon main.js
 ```
 
 ### Code Quality
-
-Run ESLint to check code quality:
 
 ```bash
 npm run lint
@@ -374,16 +272,13 @@ npm run lint
 
 ### Best Practices
 
-When developing commands:
-
-1. **Always use `.env`** for sensitive data (tokens, API keys)
-2. **Never commit `.env`** to Git (already in `.gitignore`)
-3. **Use lowercase** for command names
-4. **Add try-catch** blocks for error handling
-5. **Use embeds** for better-looking responses
-6. **Validate user input** before processing
-7. **Add descriptive comments** in complex functions
-8. **Test commands** thoroughly before committing
+- Always use `.env` for sensitive data
+- Never commit `.env` to Git
+- Use lowercase for command names
+- Add error handling (try-catch)
+- Use embeds for responses
+- Validate user input
+- Add comments for complex code
 
 ---
 
@@ -395,65 +290,49 @@ When developing commands:
 | Language | JavaScript |
 | Runtime | Node.js |
 | Library | discord.js v14 |
-| License | ISC |
-| Status | Active Development |
+| Status | Active |
 
-**Code Quality Rating: 8.5/10**
+**Quality Rating: 8.5/10**
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how to contribute:
+Contributions welcome! 
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
+**Steps:**
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/new-command`)
+3. Commit changes (`git commit -m 'Add feature'`)
+4. Push branch (`git push origin feature/new-command`)
+5. Open Pull Request
 
-### Guidelines
-
-- Follow the existing code style
+**Guidelines:**
+- Follow existing code style
 - Add comments for complex logic
-- Test your changes thoroughly
-- Update README if adding new features
+- Test thoroughly
+- Update README if needed
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **ISC License** - see [package.json](./package.json) for details.
+ISC License - See `package.json`
 
 ---
 
-## 👤 Author
+## 🔗 Resources
 
-**Created by:** [Zythetic](https://github.com/muaafi777-arch)
-
-For questions or support, feel free to:
-- 📧 Open an issue on GitHub
-- 💬 Discuss in GitHub Discussions
-- 🔗 Check [Discord Developers Documentation](https://discord.com/developers/docs)
-
----
-
-## 🔗 Useful Resources
-
-- [discord.js Documentation](https://discord.js.org/#/docs)
+- [discord.js Documentation](https://discord.js.org/)
 - [Discord Developers Portal](https://discord.com/developers)
-- [Node.js Documentation](https://nodejs.org/docs/)
-- [dotenv Package](https://github.com/motdotla/dotenv)
+- [Node.js Documentation](https://nodejs.org/)
 
 ---
 
 <div align="center">
 
-**[⬆ Back to Top](#-zyubot)**
+Made with ❤️ by Zythetic
 
-Made with ❤️ by Zythetic | Last Updated: May 19, 2026
+[⬆ Back to Top](#-zyubot)
 
 </div>
-#   B o t - c o m m a n d - d i s c o r d 
- 
- 
