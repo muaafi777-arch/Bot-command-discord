@@ -49,9 +49,11 @@ module.exports = [
         description: 'Menampilkan informasi Bot',
         execute(message){
             const infoBot =
+            '\n'+
             'INFORMASI BOT:\n\n'+ 
             'Nama: Zyubot\n'+
-            'Owner: Zythetic\n\n'+
+            'Owner: Zythetic\n'+
+            'Versi: Alpha 0.1\n\n'+
             'Bot masih dalam tahap pengembangan'
 
             message.reply(infoBot);
