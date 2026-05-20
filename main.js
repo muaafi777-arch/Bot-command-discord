@@ -49,10 +49,12 @@ bot.on('messageCreate', (message) =>{
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
-    if(!bot.command.has(commandName)) return;
+    if(!bot.command.has(commandName)) {
+        return message.reply('Command tidak tersedia, ketik ***.help*** untuk melihat command yang tersedia')};
 
     try {
-        bot.command.get(commandName).execute(message, args);
+            bot.command.get(commandName).execute(message, args);
+
     } catch(error){
         console.log(error);
         message.reply('Sistem error');

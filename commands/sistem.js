@@ -49,7 +49,7 @@ module.exports = [
         description: 'Menampilkan informasi Bot',
         execute(message){
             const infoBot =
-            '\n'+
+            '------------------\n'+
             'INFORMASI BOT:\n\n'+ 
             'Nama: Zyubot\n'+
             'Owner: Zythetic\n'+
