@@ -54,5 +54,16 @@ module.exports = [
             }
             message.reply(`Hasil dari ${angka1} ${simbol} ${angka2} = ${hasil}`)
         }
-    }
+    },
+    
+    // {
+    //     name: 'fisika',
+    //     description: 'menghitung fisika sederhana',
+    //     execute(message, args){
+    //         const infoBot = 
+    //         'Untuk mulai menghitung gunakan format: .fisika <tipe> <angka1> <angka2>\n\n'+
+    //         'Tipe yang bisa dikerjakan:\n'+
+    //         '- .fisika jarak : menghitung jarak'
+    //     }
+    // }
 ]

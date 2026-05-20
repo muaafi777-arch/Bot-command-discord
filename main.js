@@ -36,7 +36,11 @@ for (const file of commandFiles){
 
 //Pesan CMD: bot sudah aktif
 bot.once('ready', () => {
-    console.log(`Bot ${bot.user.displayName} sudah aktif`)
+    console.log(`Bot ${bot.user.displayName} sudah aktif`);
+    // Inisialisasi storage
+    if (!global.storage) {
+        global.storage = new Map();
+    }
 });
 
 
