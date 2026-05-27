@@ -1,8 +1,9 @@
 module.exports = [
     {
         name: 'highlow',
-        description: 'Mainkan game High/Low - tebak apakah angka berikutnya lebih tinggi atau lebih rendah',
+        description: 'Start game High/Low',
         aliases: ['hl', 'highlowgame'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             // In-memory storage
             if (!global.storage) {
@@ -94,8 +95,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'high',
-        description: 'Pilih HIGH di game High/Low',
+        description: 'Pilih HIGH',
         aliases: ['h'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             // In-memory storage
             if (!global.storage) {
@@ -185,8 +187,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'low',
-        description: 'Pilih LOW di game High/Low',
+        description: 'Pilih LOW',
         aliases: ['l'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             // In-memory storage
             if (!global.storage) {
@@ -276,8 +279,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'cancel',
-        description: 'Batal taruhan High/Low Anda',
+        description: 'Batal taruhan',
         aliases: ['cancelbet', 'quit'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             // In-memory storage
             if (!global.storage) {
@@ -330,7 +334,8 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'balance',
-        description: 'Cek saldo High/Low Anda',
+        description: 'Cek saldo',
+        category: 'Game 🎮',
         aliases: ['bal', 'money'],
         execute: async (message, args) => {
             // In-memory storage
@@ -368,8 +373,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'hlhelp',
-        description: 'Tampilkan bantuan untuk game High/Low',
+        description: 'Tampilkan bantuan untuk game',
         aliases: ['hlcommands', 'highlowhelp'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             const embed = {
                 title: '🎮 High/Low - Panduan Game',
@@ -412,8 +418,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'hlreset',
-        description: 'Reset saldo High/Low ke $100',
+        description: 'Reset saldo ke $100',
         aliases: ['hlrestart', 'resetbalance'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             if (!global.storage) {
                 global.storage = new Map();
@@ -448,8 +455,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'hltop',
-        description: 'Lihat leaderboard High/Low',
+        description: 'Lihat leaderboard',
         aliases: ['hllb', 'highlowleaderboard'],
+        category: 'Game 🎮',
         execute: async (message, args) => {
             if (!global.storage) {
                 global.storage = new Map();
@@ -495,8 +503,9 @@ Angka berikutnya akan muncul dalam ${userGame.timer}s`;
 
     {
         name: 'withdraw',
-        description: 'Tarik saldo High/Low ke saldo utama',
+        description: 'Tarik saldo ke saldo utama',
         usage: '.withdraw <amount>',
+        category: 'Game 🎮',
         execute: async (message, args) => {
             // In-memory storage
             if (!global.storage) {

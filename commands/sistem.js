@@ -2,6 +2,7 @@ module.exports = [
     {
         name: 'ping',
         description: 'Mengecek litensi pesan',
+        category: 'Sistem ⚙️',
         async execute(message) {
             const pesanSementara = await message.reply('Sedang menghitung....')
             const apiPing = message.client.ws.ping;
@@ -15,25 +16,37 @@ module.exports = [
     {
         name: 'help',
         description: 'Menampilkan list command',
+        category: 'Sistem ⚙️',
         execute(message) {
-            // 1. Ambil semua command dari laci arsip
             const daftarCommand = message.client.command;
 
-            // 2. Buat variabel teks awal (Gunakan 'let' karena teks ini akan kita tambah-tambah)
-            let teksBantuan = "**📚 Daftar Perintah Bot**\nBerikut adalah perintah yang tersedia:\n\n";
+            const grupKategori = {}
 
-            // 3. Looping: Masukkan nama dan deskripsi ke dalam teksBantuan
             daftarCommand.forEach((command) => {
-                teksBantuan += `**.${command.name}** - ${command.description || 'Tidak ada deskripsi'}\n`;
+                const namaKategori = command.category || 'Lainnya';
+
+                if (!grupKategori[namaKategori]){
+                    grupKategori[namaKategori] = []
+                }
+
+
+                grupKategori[namaKategori].push(`**.${command.name}** - ${command.description || 'Tidak ada deskripsi'}`);
             });
 
-            // 4. Kirim teks yang sudah jadi ke Discord
+            let teksBantuan = "**📚 Daftar Perintah Bot**\nBerikut adalah perintah yang tersedia:\n\n";
+
+            for (const kategori in grupKategori){
+                teksBantuan += `**__${kategori}__**\n`
+                teksBantuan += grupKategori[kategori].join('\n')
+                teksBantuan += '\n\n'
+            }
             message.channel.send(teksBantuan);
         }
     },
     {
-        name: 'waktu',
-        description: 'Melihat waktu sekarang',
+        name: 'hari',
+        description: 'Melihat hari',
+        category: 'Sistem ⚙️',
         execute(message){
             const waktu = new Date();
             const hari = waktu.toLocaleDateString('id-ID', {
@@ -45,8 +58,25 @@ module.exports = [
         }
     },
     {
+        name: 'waktu',
+        description: 'Melihat waktu',
+        category: 'Sistem ⚙️',
+        execute(message){
+            const waktu = new Date();
+            const pukul = waktu.toLocaleTimeString('id-ID', {
+                timeZone: 'Asia/Jakarta',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+            });
+        
+            message.reply(`Pukul ${pukul} `)
+        }
+    },
+    {
         name: 'info',
         description: 'Menampilkan informasi Bot',
+        category: 'Sistem ⚙️',
         execute(message){
             const infoBot =
             '------------------\n'+

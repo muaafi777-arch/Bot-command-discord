@@ -2,6 +2,7 @@ module.exports = [
     {
         name: 'hitung',
         description: 'Menghitung angka dengan 4 operasi dan 2 angka',
+        category: 'Perhitungan 📕',
         execute(message, args){
             const contohOperasi = 
                     'Untuk mulai menghitung gunakan format: **.hitung <operasi> <angka1> <angka2>**\n\n' +

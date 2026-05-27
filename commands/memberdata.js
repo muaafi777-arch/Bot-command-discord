@@ -4,6 +4,7 @@ module.exports = [
     {
         name: 'userinfo',
         description: 'Menampilkan informasi user',
+        category: 'Sistem ⚙️',
         execute(message, args){
             const targetMember = message.mentions.members.first()  || message.member;
             const user = targetMember.user;
