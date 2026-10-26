@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Client, GatewayIntentBits, Collection, REST, Routes, Events} = require('discord.js');
+const {Client, GatewayIntentBits, Collection, REST, Routes, Events, MessageFlags} = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -95,7 +95,7 @@ bot.on(Events.InteractionCreate, async (interaction) => {
         await command.execute(interaction);
     } catch (error) {
         console.error(error);
-        const reply = {content: 'Terjadi error saat menjalankan command.', ephemeral: true};
+        const reply = {content: 'Terjadi error saat menjalankan command.', flags: MessageFlags.Ephemeral};
         if (interaction.replied || interaction.deferred) {
             await interaction.followUp(reply);
         } else {

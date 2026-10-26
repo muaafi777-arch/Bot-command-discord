@@ -20,7 +20,7 @@ module.exports = [
             const grupKategori = {};
 
             daftarCommand.forEach((command) => {
-                const namaKategori = command.data?.description ? 'System' : 'Lainnya';
+                const namaKategori = 'System';
 
                 if (!grupKategori[namaKategori]){
                     grupKategori[namaKategori] = []
