@@ -18,7 +18,7 @@ module.exports = [
         description: 'Menampilkan list command',
         category: 'Sistem ⚙️',
         execute(message) {
-            const daftarCommand = message.client.command;
+            const daftarCommand = message.client.commands;
 
             const grupKategori = {}
 
