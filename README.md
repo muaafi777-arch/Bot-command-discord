@@ -102,6 +102,7 @@ PREFIX=>>      # Gunakan >>command
 | `.help` | Show all commands | `.help` |
 | `.info` | Bot information | `.info` |
 | `.waktu` | Current time (Jakarta) | `.waktu` |
+| `.hari` | Current date (Jakarta) | `.hari` |
 
 ### Utility Commands
 
@@ -109,6 +110,12 @@ PREFIX=>>      # Gunakan >>command
 |---------|-------------|-------|
 | `.userinfo` | User profile info | `.userinfo [@User]` |
 | `.hitung` | Calculator (4 ops) | `.hitung <op> <num1> <num2>` |
+
+### Chatbot
+
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `.chat` | Talk with bot (WIP) | `.chat <message>` |
 
 ---
 
@@ -149,7 +156,24 @@ Tampilkan informasi detail user/member dengan embed yang cantik.
 .userinfo @Username   → Other user's profile
 ```
 
----
+#### 🤖 .chat - Chatbot (Work in Progress)
+
+Berbicara dengan bot AI.
+
+**Examples:**
+```
+.chat Halo bot!
+.chat Apa kabar?
+```
+
+#### 📅 .hari - Current Date
+
+Menampilkan tanggal hari ini (Timezone Asia/Jakarta).
+
+**Examples:**
+```
+.hari
+```
 
 ## 📁 Project Structure
 
@@ -162,9 +186,10 @@ Bot-command-discord/
 ├── .gitignore           ← Git rules
 ├── README.md            ← Documentation
 └── commands/
-    ├── sistem.js        ← System commands
+    ├── sistem.js        ← System commands (ping, help, info, waktu, hari)
     ├── perhitungan.js   ← Calculator (.hitung)
-    └── memberData.js    ← User info (.userinfo)
+    ├── memberdata.js    ← User info (.userinfo)
+    └── chatbot.js       ← Chatbot (.chat - WIP)
 ```
 
 ---
@@ -286,7 +311,7 @@ npm run lint
 
 | Metric | Value |
 |--------|-------|
-| Total Commands | 6 |
+| Total Commands | 8 |
 | Language | JavaScript |
 | Runtime | Node.js |
 | Library | discord.js v14 |

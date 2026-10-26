@@ -1,5 +1,5 @@
 require('dotenv').config();
-const {Client, GatewayIntentBits, Collection} = require('discord.js');
+const {Client, GatewayIntentBits, Collection, REST, Routes, Events} = require('discord.js');
 const fs = require('fs');
 const path = require('path');
 
@@ -9,22 +9,26 @@ if (!token) {
     process.exit(1);
 }
 
-const prefix = process.env.PREFIX || '.';
+const clientId = process.env.CLIENT_ID;
+if (!clientId) {
+    console.error('❌ CLIENT_ID tidak ditemukan di .env');
+    process.exit(1);
+}
 
 const bot = new Client({
     intents: [
         GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
+        GatewayIntentBits.GuildMessages
     ]
 });
 
 bot.commands = new Collection();
 
-// Membaca folder commands dan file .js
+// Load commands
 const commandPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandPath).filter(file => file.endsWith('.js'));
+
+const commands = [];
 
 for (const file of commandFiles) {
     const filePath = path.join(commandPath, file);
@@ -32,66 +36,80 @@ for (const file of commandFiles) {
 
     if (Array.isArray(command)) {
         for (const cmd of command) {
-            bot.commands.set(cmd.name, cmd);
+            if ('data' in cmd && 'execute' in cmd) {
+                bot.commands.set(cmd.data.name, cmd);
+                commands.push(cmd.data.toJSON());
+            } else {
+                console.warn(`[WARNING] Command di ${filePath} tidak punya "data" atau "execute"`);
+            }
         }
     } else {
-        bot.commands.set(command.name, command);
+        if ('data' in command && 'execute' in command) {
+            bot.commands.set(command.data.name, command);
+            commands.push(command.data.toJSON());
+        } else {
+            console.warn(`[WARNING] Command di ${filePath} tidak punya "data" atau "execute"`);
+        }
     }
 }
 
-// Pesan CMD: bot sudah aktif
-bot.once('ready', () => {
-    console.log(`Bot ${bot.user.displayName} sudah aktif`);
-    // Inisialisasi storage
+// Deploy commands
+async function deployCommands() {
+    try {
+        console.log(`🔄 Started refreshing ${commands.length} application (/) commands.`);
+
+        const rest = new REST({version: '10'}).setToken(token);
+
+        const data = await rest.put(
+            Routes.applicationCommands(clientId),
+            {body: commands}
+        );
+
+        console.log(`✅ Successfully reloaded ${data.length} application (/) commands.`);
+    } catch (error) {
+        console.error('❌ Error deploying commands:', error);
+    }
+}
+
+// Ready event
+bot.once(Events.ClientReady, async (c) => {
+    console.log(`Bot ${c.user.displayName} sudah aktif`);
     if (!global.storage) {
         global.storage = new Map();
     }
+    await deployCommands();
 });
 
-// Memanggil command Bot
-bot.on('messageCreate', (message) => {
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+// Interaction handler
+bot.on(Events.InteractionCreate, async (interaction) => {
+    if (!interaction.isChatInputCommand()) return;
 
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
-    const commandName = args.shift().toLowerCase();
+    const command = bot.commands.get(interaction.commandName);
 
-    if (!bot.commands.has(commandName)) {
-        return message.reply('Command tidak tersedia, ketik **.help** untuk melihat command yang tersedia');
+    if (!command) {
+        console.error(`Command ${interaction.commandName} tidak ditemukan`);
+        return;
     }
 
     try {
-        bot.commands.get(commandName).execute(message, args);
+        await command.execute(interaction);
     } catch (error) {
         console.error(error);
-        message.reply('Terjadi error saat menjalankan command.');
+        const reply = {content: 'Terjadi error saat menjalankan command.', ephemeral: true};
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp(reply);
+        } else {
+            await interaction.reply(reply);
+        }
     }
 });
 
 // Graceful shutdown
 process.on('SIGINT', () => {
     console.log('\n🛑 Shutting down...');
-    if (global.storage) {
-        for (const [key, value] of global.storage.entries()) {
-            if (key.endsWith('_gameTimer') && value) {
-                clearInterval(value);
-            }
-        }
-    }
     bot.destroy();
     process.exit(0);
 });
 
-process.on('SIGTERM', () => {
-    console.log('\n🛑 Shutting down...');
-    if (global.storage) {
-        for (const [key, value] of global.storage.entries()) {
-            if (key.endsWith('_gameTimer') && value) {
-                clearInterval(value);
-            }
-        }
-    }
-    bot.destroy();
-    process.exit(0);
-});
 
 bot.login(token);

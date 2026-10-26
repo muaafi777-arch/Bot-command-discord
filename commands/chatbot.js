@@ -1,13 +1,16 @@
-const Ollama_URL = "";
-const Model_Name = "";
+const {SlashCommandBuilder} = require('discord.js');
 
 module.exports = [
     {
-        name: 'chat',
-        description: 'Berbicara dengan Bot',
-        category: 'Chatbot 💬',
-        execute(message, args){
-            message.reply("Masih dalam tahap pengembangan")
+        data: new SlashCommandBuilder()
+            .setName('chat')
+            .setDescription('Berbicara dengan Bot')
+            .addStringOption(option =>
+                option.setName('pesan')
+                    .setDescription('Pesan untuk bot')
+                    .setRequired(true)),
+        async execute(interaction) {
+            await interaction.reply('Masih dalam tahap pengembangan');
         }
-    },
-]
+    }
+];
